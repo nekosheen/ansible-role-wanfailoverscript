@@ -1,0 +1,21 @@
+---
+wfs_targets_file: /etc/wfs/targets
+wfs_primary_gateway: 10.0.0.1
+wfs_secondary_gateway: 192.168.0.1
+wfs_max_latency: 1
+wfs_interval: 20
+wfs_test_count: 2
+wfs_threshold: 2
+wfs_cooldown_delay_one: 36
+wfs_cooldown_delay_two: 60
+wfs_mail_target: ""
+wfs_is_daemon: 1
+wfs_is_quiet: 1
+wfs_pid_file: /var/run/wfs.pid
+wfs_primary_command: ""
+wfs_secondary_command: ""
+wfs_debug_level: 1
+wfs_targets:
+  - 8.8.8.8
+  - 1.1.1.1
+  - 9.9.9.9

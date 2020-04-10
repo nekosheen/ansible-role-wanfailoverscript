@@ -1,0 +1,41 @@
+---
+
+- name: Create wfs directory
+  file:
+    path: /etc/wfs
+    state: directory
+- name: Create targets file from template
+  template:
+    src: ./templates/targets.conf.j2
+    dest: "{{ wfs_targets_file }}"
+
+- name: Copy the wfs binary to remote /usr/bin
+  copy:
+    src: ./files/wfs
+    dest: /usr/bin/wfs
+
+- name: Make wfs binary executable
+  file:
+    path: /usr/bin/wfs
+    mode: '0755'
+
+- name: Copy the init.d wfs file to remote init.d
+  copy:
+    src: ./files/init.d/wfs
+    dest: /etc/init.d/wfs
+
+- name: Make init.d script executable
+  file:
+    path: /etc/init.d/wfs
+    mode: '0755'
+
+- name: Copy configuration file
+  template:
+    src: ./templates/wfs.conf.j2
+    dest: /etc/wfs/wfs.conf
+
+- name: Start WFS service
+  service:
+    name: wfs
+    daemon_reload: yes
+    state: started
